@@ -1,0 +1,38 @@
+﻿@model OnlineBook.Entity.BookDetail
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table>
+	@foreach (OnlineBook.Entity.BookDetail item in (IEnumerable<OnlineBook.Entity.BookDetail>)ViewData["BookDetails"])
+	{
+		<tr>
+			<td>@item.bookId</td>
+			<td>@item.bookName</td>
+			<td>@item.bookAuthor</td>
+		</tr>
+	}
+</table>
+
+<table>
+	@foreach (OnlineBook.Entity.BookDetail item in (IEnumerable<OnlineBook.Entity.BookDetail>)TempData["BookDetails"])
+	{
+		<tr>
+			<td>@item.bookId</td>
+			<td>@item.bookName</td>
+			<td>@item.bookAuthor</td>
+		</tr>
+	}
+</table>
+<table>
+	@foreach (OnlineBook.Entity.BookDetail item in ViewBag.BookDetails)
+	{
+		<tr>
+			<td>@item.bookId</td>
+			<td>@item.bookName</td>
+			<td>@item.bookAuthor</td>
+		</tr>
+	}
+</table>
