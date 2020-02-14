@@ -1,38 +1,68 @@
-﻿@model OnlineBook.Entity.BookDetail
+﻿@*@model OnlineBook.Entity.BookDetail*@
 
+@model IEnumerable<OnlineBook.Entity.BookDetail>
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "books";
 }
 
 <h2>Index</h2>
-<table>
-	@foreach (OnlineBook.Entity.BookDetail item in (IEnumerable<OnlineBook.Entity.BookDetail>)ViewData["BookDetails"])
-	{
-		<tr>
-			<td>@item.bookId</td>
-			<td>@item.bookName</td>
-			<td>@item.bookAuthor</td>
-		</tr>
-	}
-</table>
+@*<table>
+		@foreach (OnlineBook.Entity.BookDetail item in (IEnumerable<OnlineBook.Entity.BookDetail>)ViewData["BookDetails"])
+		{
+			<tr>
+				<td>@item.bookId</td>
+				<td>@item.bookName</td>
+				<td>@item.bookAuthor</td>
+			</tr>
+		}
+	</table>
 
-<table>
-	@foreach (OnlineBook.Entity.BookDetail item in (IEnumerable<OnlineBook.Entity.BookDetail>)TempData["BookDetails"])
+	<table>
+		@foreach (OnlineBook.Entity.BookDetail item in (IEnumerable<OnlineBook.Entity.BookDetail>)TempData["BookDetails"])
+		{
+			<tr>
+				<td>@item.bookId</td>
+				<td>@item.bookName</td>
+				<td>@item.bookAuthor</td>
+			</tr>
+		}
+	</table>
+	<table>
+		@foreach (OnlineBook.Entity.BookDetail item in ViewBag.BookDetails)
+		{
+			<tr>
+				<td>@item.bookId</td>
+				<td>@item.bookName</td>
+				<td>@item.bookAuthor</td>
+			</tr>
+		}
+	</table>*@
+@Html.ActionLink("Create New bookdetail", "Create")<br />
+
+@if (TempData["Message"] != null)
+{
+	@Html.Label((string)TempData["Message"])
+}
+<h2>books</h2>
+<table border="1">
+	<tr>
+		<td>bookName</td>
+		<td>bookAuthor</td>
+		<td>Choice</td>
+	</tr>
+	@foreach (OnlineBook.Entity.BookDetail item in @Model)
 	{
 		<tr>
-			<td>@item.bookId</td>
-			<td>@item.bookName</td>
-			<td>@item.bookAuthor</td>
-		</tr>
-	}
-</table>
-<table>
-	@foreach (OnlineBook.Entity.BookDetail item in ViewBag.BookDetails)
-	{
-		<tr>
-			<td>@item.bookId</td>
-			<td>@item.bookName</td>
-			<td>@item.bookAuthor</td>
+			<td>
+				@item.bookName
+			</td>
+			<td>
+				@item.bookAuthor
+			</td>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id = item.bookId })
+				@Html.ActionLink("Delete", "Delete", new { id = item.bookId })
+			</td>
 		</tr>
 	}
 </table>

@@ -1,0 +1,36 @@
+﻿@model OnlineBook.Entity.BookDetail
+
+@{
+	ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "BookList", FormMethod.Post))
+{
+	<table cellpadding="10">
+		<tr>
+			<td>
+				@Html.Label("bookId")
+			</td>
+			<td>
+				@Html.TextBoxFor(Model => Model.bookId)
+			</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(Model => Model.bookName)</td>
+			<td>@Html.EditorFor(Model => Model.bookName)</td>
+		</tr>
+		<tr>
+			<td>@Html.LabelFor(Model => Model.bookAuthor)</td>
+			<td>@Html.EditorFor(Model => Model.bookAuthor)</td>
+		</tr>
+		<tr>
+			<td>
+				@Html.ActionLink("Back to list", "Index")
+			</td>
+			<td>
+				<input type="submit" id="Add" />
+			</td>
+		</tr>
+	</table>
+}

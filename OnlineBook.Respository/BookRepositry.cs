@@ -20,6 +20,26 @@ namespace OnlineBook.Respository
 		{
 			return books;
 		}
-
+		public void AddBook(BookDetail bookDetail)
+		{
+			books.Add(bookDetail);
+		}
+		public BookDetail GetBookById(int bookId)
+		{
+			return books.Find(id => id.bookId == bookId);
+		}
+		public void DeleteBook(int packageId)
+		{
+			BookDetail book = GetBookById(packageId);
+			if (book != null)
+				books.Remove(book);
+		}
+		public void UpdateBook(BookDetail book)
+		{
+			//PackageDetails packages = package.Find(id => id.PackageId == pack.PackageId);
+			BookDetail bookDetails = GetBookById(book.bookId);
+			bookDetails.bookName = book.bookName;
+			bookDetails.bookAuthor = book.bookAuthor;
+		}
 	}
 }
