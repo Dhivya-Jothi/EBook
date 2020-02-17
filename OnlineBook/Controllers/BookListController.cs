@@ -17,11 +17,6 @@ namespace OnlineBook.Controllers
 		}
 		public ActionResult Index()
         {
-			//IEnumerable<BookDetail> books = BookRepositry.GetBookDetails();
-			//ViewBag.BookDetails = books;
-			//TempData["BookDetails"] = books;
-			//ViewData ["BookDetails"] = books;
-			//return View();
 			IEnumerable<BookDetail> books = BookRepositry.GetBookDetails();
 			return View(books);
 		}
@@ -31,16 +26,13 @@ namespace OnlineBook.Controllers
 		{
 			return View();
 		}
+
 		[HttpPost]
 		public ActionResult Create(BookDetail bookDetail)
 		{
-			// if(ModelState.IsValid)
-			//{
 			books.AddBook(bookDetail);
 			TempData["Message"] = "Books added";
-			return RedirectToAction("Index");
-			//}
-			//return View(packageDetails);
+			return RedirectToAction("Index");	
 		}
 		public ActionResult Edit(int id)
 		{
@@ -54,15 +46,11 @@ namespace OnlineBook.Controllers
 			return RedirectToAction("Index");
 		}
 		[HttpPost]
-		public ActionResult Update(BookDetail bookDetail)
+		public ActionResult Update(BookDetail book)
 		{
-			// if (ModelState.IsValid)
-			//{
-			books.UpdateBook(bookDetail);
+			books.UpdateBook(book);
 			TempData["Message"] = "Books updated";
 			return RedirectToAction("Index");
-			//}
-			//return View("Edit",packageDetails);
 		}
 	}
 }

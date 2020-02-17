@@ -28,18 +28,18 @@ namespace OnlineBook.Respository
 		{
 			return books.Find(id => id.bookId == bookId);
 		}
-		public void DeleteBook(int packageId)
+		public void DeleteBook(int bookId)
 		{
-			BookDetail book = GetBookById(packageId);
+			BookDetail book = GetBookById(bookId);
 			if (book != null)
 				books.Remove(book);
 		}
-		public void UpdateBook(BookDetail book)
+		public void UpdateBook(BookDetail bookDetail)
 		{
-			//PackageDetails packages = package.Find(id => id.PackageId == pack.PackageId);
-			BookDetail bookDetails = GetBookById(book.bookId);
-			bookDetails.bookName = book.bookName;
-			bookDetails.bookAuthor = book.bookAuthor;
+
+			BookDetail bookDetails = GetBookById(bookDetail.bookId);
+			bookDetails.bookName = bookDetail.bookName;
+			bookDetails.bookAuthor = bookDetail.bookAuthor;
 		}
 	}
 }
