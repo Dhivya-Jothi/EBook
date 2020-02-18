@@ -28,16 +28,20 @@ namespace OnlineBook.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Create(BookDetail bookDetail)
+		[ActionName("Create")]
+		public ActionResult Createbook()
 		{
+			BookDetail bookDetail = new BookDetail();
+			TryUpdateModel(bookDetail);
 			books.AddBook(bookDetail);
 			TempData["Message"] = "Books added";
 			return RedirectToAction("Index");	
 		}
 		public ActionResult Edit(int id)
 		{
-			BookDetail book = books.GetBookById(id);
-			return View(books);
+			BookRepositry bookRepositry = new BookRepositry();
+			BookDetail book = bookRepositry.GetBookById(id);
+			return View(book);
 		}
 		public ActionResult Delete(int id)
 		{
