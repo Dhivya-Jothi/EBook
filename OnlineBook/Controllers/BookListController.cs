@@ -26,16 +26,27 @@ namespace OnlineBook.Controllers
 		{
 			return View();
 		}
+		
+
+
+		//[HttpPost]
+		//[ActionName("Create")]    ////Include Property
+		//public ActionResult Createbook([Bind(Include= "bookName")]BookDetail bookDetail)
+		//{
+		//	//TryUpdateModel(bookDetail);
+		//	books.AddBook(bookDetail);
+		//	TempData["Message"] = "Books added";
+		//	return RedirectToAction("Index");	
+		//}
 
 		[HttpPost]
-		[ActionName("Create")]
-		public ActionResult Createbook()
+		[ActionName("Create")]    //Exclude Property
+		public ActionResult Createbook([Bind(Exclude = "bookName")]BookDetail bookDetail)
 		{
-			BookDetail bookDetail = new BookDetail();
-			TryUpdateModel(bookDetail);
+			//TryUpdateModel(bookDetail);
 			books.AddBook(bookDetail);
 			TempData["Message"] = "Books added";
-			return RedirectToAction("Index");	
+			return RedirectToAction("Index");
 		}
 		public ActionResult Edit(int id)
 		{
